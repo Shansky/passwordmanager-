@@ -1,0 +1,4 @@
+Django==1.10.7
+gunicorn==19.6.0
+djangorestframework==3.6.3
+django-fernet-fields==0.5
