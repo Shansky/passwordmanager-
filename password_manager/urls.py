@@ -15,7 +15,7 @@ router.register(r'servises', ServisesViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
-    url(r'^$', MainView.as_view()),
+    url(r'^$', MainView.as_view(), name='main'),
     url(r'^login/$', views.login, {'template_name': 'login.html'}),
     url(r'^logout/$', views.logout, {'next_page': '/'}, name='logout'),
 ]

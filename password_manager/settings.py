@@ -1,16 +1,23 @@
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PROJECT_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-SECRET_KEY = 'if)1b=@6r%g()t@y@nxdb-rlsc(-$qba(q*ek6b3p$p5j_p+t('
-FERNET_KEYS = [
-    'if)1b=@6r%g()t@y@nxdb-rlsc(-$qba(q*ek6b3p$p5j_p+t('
-]
-# SECRET_KEY = os.getenv('SECRET_KEY')
-# FERNET_KEYS = [
-#    os.getenv('FERNET_KEYS')
-#
+
+if 'SECRET_KEY' in os.environ:
+    SECRET_KEY = os.getenv('SECRET_KEY')
+else:
+    SECRET_KEY = 'if)1b=@6r%g()t@y@nxdb-rlsc(-$qba(q*ek6b3p$p5j_p+t('
+
+if 'FERNET_KEYS' in os.environ:
+    FERNET_KEYS = [
+        os.getenv('FERNET_KEYS')
+    ]
+else:
+    FERNET_KEYS = [
+        'if)1b=@6r%g()t@y@nxdb-rlsc(-$qba(q*ek6b3p$p5j_p+t('
+    ]
+
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
@@ -31,7 +38,8 @@ INSTALLED_APPS = [
 
 INSTALLED_APPS += [
     'password_manager',
-    'rest_framework_swagger'
+    'rest_framework_swagger',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -42,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'password_manager.urls'
@@ -130,5 +139,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_ROOT, 'password_manager/static'),
+    os.path.join(PROJECT_ROOT, 'static'),
 ]
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'

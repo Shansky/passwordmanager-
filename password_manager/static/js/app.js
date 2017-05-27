@@ -1,0 +1,1 @@
+angular.module('passwordmanagerApp', ['passwordmanagerApp.controllers', 'passwordmanagerApp.services']);
