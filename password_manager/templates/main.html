@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}{% endblock %}
+
+{% block content %}
+<div ng-app="passwordmanagerApp" class="container">
+    <dir>
+        <h3>Password Manager</h3>
+        <a href="{% url 'logout' %}" class="right">Logout</a> 
+    </dir>
+
+    {% verbatim %}
+    <div ui-view></div>
+    {% endverbatim %}
+</div>
+{% endblock %}
