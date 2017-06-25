@@ -5,3 +5,6 @@ For create User:
 
 Get some records :
 1. ./manage.py loaddata pagesdata
+
+
+## Heroku
